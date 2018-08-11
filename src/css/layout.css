@@ -1,0 +1,39 @@
+header {
+  background-color: rgb(250, 250, 250);
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  padding: 4vw;
+}
+
+header .logo {
+  color: var(--p-color);
+  font-weight: bold;
+}
+
+header nav a {
+  color: var(--b-color);
+}
+
+.side-toggle {
+  background-color: transparent;
+  border: 0;
+}
+
+@media (min-width: 576px) {
+  header { padding: 3vw; }
+}
+
+@media (min-width: 768px) {
+  header { padding: 2.2vw; }
+}
+
+@media (min-width: 992px) {
+  header { padding: 1.7vw; }
+}
+
+@media (min-width: 1200px) {
+  header { padding: 1vw; }
+}
