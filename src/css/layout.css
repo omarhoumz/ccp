@@ -1,20 +1,30 @@
-header {
-  background-color: rgb(250, 250, 250);
-  
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+/* Navbar */
+header, .logo-wrapper {
+  grid-area: header;
+  background-color: #fff;
+  border-bottom: var(--lg-border);
+  padding: var(--header-space);
 
-  padding: 4vw;
+  position: relative;
+  z-index: 99999;
 }
 
-header .logo {
+.logo-wrapper .logo {
   color: var(--p-color);
   font-weight: bold;
 }
 
 header nav a {
+  transition: color 130ms ease;
   color: var(--b-color);
+  margin-left: var(--header-space);
+}
+header nav a:first-child {
+  margin-left: 0;
+}
+
+header nav a:hover {
+  color: var(--p-color);
 }
 
 .side-toggle {
@@ -22,18 +32,91 @@ header nav a {
   border: 0;
 }
 
+/* Sidebar */
+.sidebar {
+  padding: 6vh 4vh;
+  background-color: #fcfcfc;
+  position: relative;
+  grid-area: sidebar;
+  border-right: 0;
+  border-bottom: var(--lg-border);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.side-comp {
+  margin-bottom: 4vh;
+}
+.side-comp:last-child {
+  margin-bottom: 0;
+}
+
+.side-comp .heading {
+  color: var(--b-color);
+  margin: 0;
+  margin-bottom: 1vh;
+}
+
+.side-comp label {
+  display: block;
+  margin-bottom: 0.6vh;
+}
+
+input[type="radio"], input[type="checkbox"] {
+  margin-right: 0.8em;
+}
+
+/* Main */
+main {
+  grid-area: main;
+
+  max-height: calc(100vh - 50px);
+  overflow-y: scroll;
+  box-sizing: border-box;
+  padding: 1em;
+  max-width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+main > div {
+  width: 30%;
+  margin-right: var(--header-space);
+  float: left;
+}
+
+main a {
+  margin-bottom: var(--header-space);
+  display: block;
+  height: 300px;
+  margin-right: 30px;
+}
+main a img {
+  width: 100%;
+}
+.images img {
+  transition: box-shadow 200ms ease-in-out;
+  height: 100%;
+  width: auto;
+}
+.images img:hover {
+  box-shadow: var(--shadow-d2);
+}
+
+/* Bootstrap Breakpoints */
 @media (min-width: 576px) {
-  header { padding: 3vw; }
 }
 
 @media (min-width: 768px) {
-  header { padding: 2.2vw; }
+  .sidebar {
+    border-right: var(--lg-border);
+    border-bottom: 0;
+  }
 }
 
 @media (min-width: 992px) {
-  header { padding: 1.7vw; }
 }
 
 @media (min-width: 1200px) {
-  header { padding: 1vw; }
 }
