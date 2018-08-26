@@ -6,41 +6,41 @@ export default class Main extends Component {
     super()
     this.state = {
       pageNumber: 1,
-      div: ''
+     imageElements: ''
     }
   }
 
-  findMinHeightRef () {
-    const arr = [
-      this.refs.col1,
-      this.refs.col2,
-      this.refs.col3
-    ]
+  // findMinHeightRef () {
+  //   const arr = [
+  //     this.refs.col1,
+  //     this.refs.col2,
+  //     this.refs.col3
+  //   ]
 
-    let ref = arr[0]
+  //   let ref = arr[0]
 
-    arr.forEach(a => {
-      console.log(a, a.clientHeight, ref.clientHeight)
-      if(a.clientHeight < ref.clientHeight) {
-        ref = a
-      }
-    })
+  //   arr.forEach(a => {
+  //     console.log(a, a.clientHeight, ref.clientHeight)
+  //     if(a.clientHeight < ref.clientHeight) {
+  //       ref = a
+  //     }
+  //   })
     
-    return ref
-  }
+  //   return ref
+  // }
 
   fetchImageFromFlickr () {
 
-    let url = `https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=26d06543a026bd9b6e91fe87739c2b31&per_page=10&format=json&nojsoncallback=1`
+    let url = `https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=${ACCESS_KEY.flickr}&per_page=10&format=json&nojsoncallback=1`
 
     fetch (url)
     .then(res => res.json())
     .then(response => {
-      console.log(response)
+      // console.log(response)
       this.setState({
-        div: ''
+       imageElements: ''
       })
-      let div = response.photos.photo.map(
+      let imageElements = response.photos && response.photos.photo.map(
         ({ farm, server, id, secret, title }, i) => {
           let imgUrl = `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_n.jpg`
           let imgDonwload = `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_h.jpg`
@@ -52,14 +52,15 @@ export default class Main extends Component {
         })
 
       this.setState({
-        div: div
+       imageElements
       })
     })
+    .catch(err => console.error('ERROR #0021', err))
 
   }
 
   fetchImageFromUnsplash () {
-    let { pageNumber } = this.state
+    const { pageNumber } = this.state
     let url = `https://api.unsplash.com/`
       + `photos?page=${pageNumber}`
       + `&client_id=${ACCESS_KEY.unsplash}`
@@ -67,12 +68,12 @@ export default class Main extends Component {
     fetch(url)
       .then(res => res.json())
       .then(response => {
-        console.log(response)
+        // console.log(response)
         this.setState({
-          div: ''
+         imageElements: ''
         })
 
-        let div = response.map((img, index) => {
+        let imageElements = response && response.map((img, index) => {
           const imageLink = img.urls.small
           const imageDownload = img.links.html
 
@@ -104,9 +105,10 @@ export default class Main extends Component {
           </a>
         })
         this.setState({
-          div: div
+         imageElements
         })
       })
+      .catch(err => console.error('ERROR #0022', err))
   }
 
   fetchApropriatePhotos (w) {
@@ -131,16 +133,20 @@ export default class Main extends Component {
     if (this.props.website !== nextProps.website) {
       this.fetchApropriatePhotos(nextProps.website)
     }
-  } 
+  }
 
   render () {
-    const { div } = this.state
+    const { imageElements } = this.state
     return <main className="images" ref="main">
-        { div }
-      {/* <div ref="col1" className="col1" >
+      <div className="all-images">
+        { imageElements }
       </div>
+      {/* <div ref="col1" className="col1" ></div>
       <div ref="col2" className="col2" ></div>
       <div ref="col3" className="col3" ></div> */}
+      <button
+        className="btn btn-more"
+        >Load More</button>
     </main>
   }
 }

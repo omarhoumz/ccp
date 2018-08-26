@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from "react-router-dom";
 import { Navbar, Sidebar, Main } from '../layout'
-import '../css/App.css';
+import '../css/App.css'
 
 class App extends Component {
   constructor () {
@@ -23,11 +22,7 @@ class App extends Component {
     return (
       <Fragment>
         <div className="grid-wrapper">
-          <section className="logo-wrapper" style={{gridArea: 'logo'}}>
-            <div>
-              <Link to="/" className="logo">LOGO</Link>
-            </div>
-          </section>
+          {/* <Logo /> */}
           <Navbar />
           <Sidebar website={ website } onChangeWebsite={(e) => this.onChangeWebsite(e)} />
           <Main website={website} />

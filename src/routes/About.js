@@ -1,7 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import { Link } from "react-router-dom";
+import React, { Component, Fragment } from 'react'
 import { Navbar } from '../layout'
-import '../css/App.css';
+import '../css/App.css'
 
 class About extends Component {
 
@@ -9,14 +8,10 @@ class About extends Component {
     return (
       <Fragment>
         <div className="grid-wrapper">
-          <section className="logo-wrapper" style={{gridArea: 'logo'}}>
-            <div>
-              <Link to="/" className="logo">LOGO</Link>
-            </div>
-          </section>
+          {/* <Logo /> */}
           <Navbar />
           <p style={{padding: 'var(--header-space)'}}>
-            2018 &copy; <a href="https://github.com/omarhoumz" target="_blank" rel="noopener" >Omar Houmz</a>
+            2018 &copy; <a href="https://github.com/omarhoumz" target="_blank" rel="noopener noreferrer" >Omar Houmz</a>
           </p>
         </div>
       </Fragment>
