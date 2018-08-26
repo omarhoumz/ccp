@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import './css/index.css';
-import App from './routes/App';
-import About from './routes/About';
+import { App, About, Home } from './routes'
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
   <Router>
     <div>
-      <Route exact path="/" component={App} />
+      <Route exact path="/" component={Home} />
+      <Route path="/explore" component={App} />
       <Route path="/about" component={About} />
     </div>
   </Router>

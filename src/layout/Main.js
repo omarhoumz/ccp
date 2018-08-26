@@ -145,6 +145,7 @@ export default class Main extends Component {
       <div ref="col2" className="col2" ></div>
       <div ref="col3" className="col3" ></div> */}
       <button
+        disabled
         className="btn btn-more"
         >Load More</button>
     </main>
