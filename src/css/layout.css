@@ -13,7 +13,7 @@ header, .logo-wrapper {
   color: var(--p-color);
   font-weight: bold;
   display: flex;
-  align-items: start;
+  align-items: flex-start;
 }
 
 header nav a {
