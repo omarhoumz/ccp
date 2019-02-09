@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { ACCESS_KEY } from '../config'
 
+// TODO: add config file, and get KEYS from env vars
+const ACCESS_KEY = ACCESS_KEY || {}
+
 export default class Main extends Component {
   constructor () {
     super()
@@ -46,7 +49,7 @@ export default class Main extends Component {
           let imgDonwload = `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_h.jpg`
           // console.log(imgUrl)
 
-          return <a href={imgDonwload} target="_blank" rel="noopener" key={i} >
+          return <a href={imgDonwload} target="_blank" rel="noopener noreferrer" key={i} >
             <img src={imgUrl} alt={title} />
           </a>
         })
@@ -100,7 +103,7 @@ export default class Main extends Component {
           // }
           // downloadingImage.src = imageLink
           
-          return <a href={imageDownload} target="_blank" rel="noopener" key={index} >
+          return <a href={imageDownload} target="_blank" rel="noopener noreferrer" key={index} >
             <img src={imageLink} alt={img.color} />
           </a>
         })
